@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Emir Harun Kılıç | Personal Portfolio</title>
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--ink:#0d1b3d;--mute:#56627f;--line:#dde3f0;--acc:#1f5eff;--accsoft:#e6edff;--ph:#eef2fa;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1126;--card:#111b38;--ink:#eef2ff;--mute:#9aa7c7;--line:#223058;--acc:#6b9bff;--accsoft:#1a2a5c;--ph:#16224a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1126;--card:#111b38;--ink:#eef2ff;--mute:#9aa7c7;--line:#223058;--acc:#6b9bff;--accsoft:#1a2a5c;--ph:#16224a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:30}
+a{color:var(--acc)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--line)}
+.bar{max-width:1040px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.logo{font-weight:700;text-decoration:none;color:var(--ink);white-space:nowrap}
+nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav a{padding:6px 10px;border-radius:8px;text-decoration:none;color:var(--mute);font-size:14px;white-space:nowrap}
+nav a:hover,nav a.on{background:var(--accsoft);color:var(--acc)}
+.tools button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:14px}
+main{max-width:1040px;margin:auto;padding:0 16px}
+section{padding:48px 0 8px}
+h1{font-size:clamp(34px,7vw,56px);line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-size:28px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--mute);margin:0 0 20px;max-width:62ch}
+.hero{display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:center;padding-top:40px}
+.tag{color:var(--acc);font-weight:600;margin:0 0 10px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid var(--acc);color:var(--acc);background:transparent}
+.btn.p{background:var(--acc);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.p{color:#0a1126}}
+:root[data-theme="dark"] .btn.p{color:#0a1126}
+.ph{background:var(--ph);border:1.5px dashed var(--line);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--mute);font-size:13px;padding:10px;aspect-ratio:4/3}
+.ph.sq{aspect-ratio:1}
+.ph img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.card h3{margin:4px 0 0;font-size:18px}
+.card p{margin:0;color:var(--mute);font-size:15px}
+.meta{font-size:13px;color:var(--mute)}
+.chip{display:inline-block;font-size:12px;padding:2px 9px;border-radius:99px;background:var(--accsoft);color:var(--acc);font-weight:600}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filters button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:6px 14px;cursor:pointer;font:inherit;font-size:14px}
+.filters button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .filters button[aria-pressed="true"]{color:#0a1126}}
+:root[data-theme="dark"] .filters button[aria-pressed="true"]{color:#0a1126}
+.tl{border-left:2px solid var(--line);margin:0;padding:0 0 0 18px;list-style:none}
+.tl li{position:relative;padding:0 0 16px}
+.tl li::before{content:"";position:absolute;left:-25px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.tl b{display:block}
+.note{background:var(--accsoft);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--ink);margin:12px 0}
+.empty{color:var(--mute);padding:20px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+details.card summary{cursor:pointer;font-weight:600}
+footer{max-width:1040px;margin:48px auto 24px;padding:20px 16px;border-top:1px solid var(--line);color:var(--mute);font-size:14px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.logo span{display:none}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#top">EHK<span> · Emir Harun Kılıç</span></a>
+<nav id="nav" aria-label="Menu"></nav>
+<div class="tools"><button id="lang" aria-label="Language">EN</button> <button id="theme" aria-label="Theme">◐</button></div>
+</div></header>
+<main id="top">
+<section class="hero">
+<div>
+<p class="tag" id="h-tag"></p>
+<h1>Emir Harun Kılıç</h1>
+<p class="sub" id="h-intro"></p>
+<div class="btns" id="h-btns"></div>
+</div>
+<div class="ph sq" id="h-photo"></div>
+</section>
+<section id="about"><h2 data-t="about"></h2><p class="sub" id="about-p"></p><div class="note" data-t="aboutNote"></div></section>
+<section id="teams"><h2 data-t="teams"></h2><p class="sub" data-t="teamsSub"></p><div class="grid" id="teams-g"></div></section>
+<section id="projects"><h2 data-t="projects"></h2><p class="sub" data-t="projectsSub"></p><div class="filters" id="pf"></div><div class="grid" id="pg"></div></section>
+<section id="achievements"><h2 data-t="ach"></h2><p class="sub" data-t="achSub"></p><div class="grid" id="ag"></div></section>
+<section id="events"><h2 data-t="events"></h2><p class="sub" data-t="eventsSub"></p><ul class="tl" id="eg"></ul></section>
+<section id="mun"><h2 data-t="mun"></h2><p class="sub" data-t="munSub"></p><div class="grid" id="mg"></div></section>
+<section id="volunteering"><h2 data-t="vol"></h2><p class="sub" data-t="volSub"></p><div class="grid" id="vg"></div></section>
+<section id="gallery"><h2 data-t="gal"></h2><p class="sub" data-t="galSub"></p><div class="grid" id="gg"></div></section>
+<section id="contact"><h2 data-t="contact"></h2><p class="sub" data-t="contactSub"></p><div class="btns"><a class="btn p" id="li" target="_blank" rel="noopener">LinkedIn</a></div></section>
+</main>
+<footer data-t="foot"></footer>
+<script>
+/* ===== İÇERİK / CONTENT — yalnızca burayı düzenleyin. Edit only this block. =====
+   img: fotoğraf yolu (ör. "images/lyron.jpg"); boşsa yer tutucu görünür. Leave "" for placeholder. */
+const LINKEDIN="https://www.linkedin.com/in/emir-harun-k%C4%B1l%C4%B1%C3%A7-00304b385/";
+const CV_URL=""; // CV PDF yolu, ör. "cv/emir-cv.pdf"
+const L=(tr,en)=>({tr,en});
+const DATA={
+teams:[
+{name:"FRC Team Lyron #10953",img:"",role:L("Kurucu üye; dokümantasyon; 2026 PR Başkanı","Founding member; documentation; 2026 PR Lead"),period:"2025 →",
+ desc:L("Çiğli Fen Lisesi'nde 2025'te kurulan FIRST Robotics Competition takımı. Slogan: “Harmony In Every Build”. Robotun yanında STEM eğitimi ve sosyal sorumluluk projeleri yürütür.","FIRST Robotics Competition team founded at Çiğli Science High School in 2025. Motto: “Harmony In Every Build”. Works on robotics, STEM education and social responsibility.")},
+{name:"PlastiClearSea",img:"",role:L("Kurucu ve takım kaptanı","Founder and team captain"),period:"2024 →",
+ desc:L("Plastik kirliliğiyle mücadele odaklı, çevresel sürdürülebilirlik takımı. (Team Lyron'dan ayrı bir takımdır.)","An environmental sustainability team focused on plastic pollution. (A separate team from Team Lyron.)")}
+],
+projects:[
+{name:"Plastivora",cat:"env",img:"",team:"PlastiClearSea",role:L("Kurucu, takım kaptanı; TÜBİTAK 2204 başvurusunda kaptan","Founder, captain; captain in the TÜBİTAK 2204 application"),period:"10/2024 – 06/2025",status:L("Tamamlandı","Completed"),
+ desc:L("Su kaynaklarındaki plastik kirliliğini azaltmayı hedefleyen çevresel biyoteknoloji projesi.","Environmental biotechnology project aiming to reduce plastic pollution in water."),
+ result:L("TEKNOFEST Biyoteknolojik İnovasyon (lise) yarı finali","TEKNOFEST Biotechnological Innovation (high school) semi-final")},
+{name:"AquaGuard",cat:"env",img:"",team:"—",role:L("CEO","CEO"),period:"24.02 – 11.03.2026",status:L("Girişim Kampı'26","Entrepreneurship Camp '26"),
+ desc:L("Sensörlerle mikroplastik verisi toplamayı, paylaşmayı ve akıllı filtreleme çözümleri geliştirmeyi hedefleyen girişim fikri.","A startup idea to collect microplastic data with sensors, share it digitally and develop smart filtering.") ,
+ result:L("Ideathon'da İzmir liseleri arasında 4.lük (22 takım)","4th among İzmir high schools at the Ideathon (22 teams)")},
+{name:"HydroCycle",cat:"env",img:"",team:"—",role:L("(rolünü ekle)","(add your role)"),period:"",status:L("Tasarım aşaması","Design stage"),
+ desc:L("Evsel gri suyun yeniden kullanımı için dört katmanlı biyofiltre, Arduino sensörleri ve hidroponik kanallar içeren tasarım.","A design for greywater reuse: four-layer biofilter, Arduino sensors and hydroponic channels."),
+ result:L("Henüz test sonucu yok","No test results yet")},
+{name:"VEGA (TÜBİTAK 4006)",cat:"robot",img:"",team:"Team Lyron",role:L("(rolünü ekle)","(add your role)"),period:"05/2026 →",status:L("Devam ediyor","Ongoing"),
+ desc:L("Farklı görevlere uyarlanabilen modüler FRC robotu tasarımı; sürücü kontrollü ve otonom görevleri hedefler.","A modular FRC robot design adaptable to different tasks, targeting driver-controlled and autonomous modes."),
+ result:L("CAD ve robot fotoğrafları eklenecek","CAD and robot photos to be added")},
+{name:"AKİS",cat:"city",img:"",team:"—",role:L("(rolünü ekle)","(add your role)"),period:"",status:L("Fikir / geliştirme","Concept / development"),
+ desc:L("Akıllı Kentsel İletişim ve Yolcu Yönetim Sistemi: toplu taşımada doluluk, bilgilendirme ve durak iletişimi.","Smart Urban Communication and Passenger Management System: occupancy, passenger info and stop communication in public transport."),
+ result:L("Hangi kısımlar hazır, sen belirle","Mark which parts are built")},
+{name:"Take Five to Live Well",cat:"intl",img:"",team:"—",role:L("Katılımcı","Participant"),period:"",status:L("eTwinning","eTwinning"),
+ desc:L("Sağlıklı yaşam alışkanlıklarını konu alan uluslararası eTwinning iş birliği.","An international eTwinning collaboration on healthy living habits."),
+ result:L("","")},
+{name:"Lyrobot",cat:"robot",img:"",team:"Team Lyron",role:L("(takım projesi)","(team project)"),period:"",status:L("Takım projesi","Team project"),
+ desc:L("Kıyı ve su yüzeyindeki katı atıkları toplamayı hedefleyen hibrit temizlik robotu.","A hybrid cleaning robot aimed at collecting solid waste on coasts and water surfaces."),result:L("","")},
+{name:"Lyrcast",cat:"stem",img:"",team:"Team Lyron",role:L("(takım projesi)","(team project)"),period:"",status:L("Takım projesi","Team project"),
+ desc:L("FRC deneyimlerini paylaşan ve yeni takımlara yol gösteren podcast serisi.","A podcast series sharing FRC experience and guiding new teams."),result:L("","")},
+{name:"Inspiring With Lyron",cat:"stem",img:"",team:"Team Lyron",role:L("(takım projesi)","(team project)"),period:"",status:L("Takım projesi","Team project"),
+ desc:L("Dezavantajlı öğrencilere yazılım, Tinkercad ve robot kodlama eğitimi verme çalışması.","Teaching software, Tinkercad and robot coding to disadvantaged students."),result:L("","")},
+{name:"LÖSEV İlham Dergisi",cat:"social",img:"",team:"Team Lyron",role:L("(takım projesi)","(team project)"),period:"",status:L("Takım projesi","Team project"),
+ desc:L("Başarı hikâyeleriyle ilham ve moral vermeyi amaçlayan sosyal sorumluluk yayını.","A social responsibility publication sharing success stories to inspire."),result:L("","")}
+],
+achievements:[
+{t:L("TEKNOFEST Biyoteknolojik İnovasyon – Yarı final","TEKNOFEST Biotech Innovation – Semi-finalist"),d:L("Plastivora (takım çalışması)","Plastivora (team effort)")},
+{t:L("Girişim Kampı'26 Ideathon – İzmir liseleri 4.sü","Entrepreneurship Camp '26 Ideathon – 4th among İzmir high schools"),d:L("AquaGuard, 22 lise takımı arasında","AquaGuard, among 22 high school teams")},
+{t:L("Marmara Regional 2026 katılımı","2026 Marmara Regional participation"),d:L("Team Lyron ile (katılım; derece değil)","With Team Lyron (participation, not a ranking)")},
+{t:L("Okul futbol/futsal turnuvası birincilikleri","School football/futsal tournament wins"),d:L("Tarih eklenecek","Add date")},
+{t:L("Sınıflar arası bilgi yarışması 1.lik ve 2.lik","Inter-class quiz: 1st and 2nd place"),d:L("Tarih eklenecek","Add date")},
+{t:L("Okul münazarası: 3.lükten 2.liğe","School debate: from 3rd to 2nd place"),d:L("Okul dışı turnuvalara katılma hakkı","Earned entry to out-of-school tournaments")}
+],
+events:[
+{date:"2025-08-29",dl:"29.08 – 09.09.2025",t:L("İzmir Enternasyonal Fuarı","İzmir International Fair"),d:L("Team Lyron ile fuar katılımı (2025 raporu)","Fair participation with Team Lyron (2025 report)")},
+{date:"2026-02-20",dl:"20–22.02.2026",t:L("CFLMUN'26","CFLMUN'26"),d:L("G20 komitesi, Çin","G20 committee, China")},
+{date:"2026-02-24",dl:"24.02 – 11.03.2026",t:L("Girişim Kampı'26","Entrepreneurship Camp '26"),d:L("AquaGuard CEO; Ideathon 4.lüğü","AquaGuard CEO; 4th at Ideathon")},
+{date:"2026-03-28",dl:"28–30.03.2026",t:L("2026 Marmara Regional","2026 Marmara Regional"),d:L("Team Lyron #10953; PR Başkanı olarak tanıtım ve pit iletişimi","Team Lyron #10953; PR Lead for outreach and pit communication")},
+{date:"2026-06-13",dl:"13.06.2026",t:L("Canva Eğitimi (Etkin Kampüs × Lyron)","Canva Workshop (Etkin Kampüs × Lyron)"),d:L("FRC takımları için görsel tasarım, PR ve dokümantasyon eğitimi (çevrim içi)","Online training on visual design, PR and documentation for FRC teams")},
+{date:"2026-06-22",dl:"22.06.2026",t:L("GençTek İzmir – FRC 101","GençTek İzmir – FRC 101"),d:L("“Bir Devlet Okulunda FRC Takımı Nasıl Kurulur?”","“How to Start an FRC Team in a Public School?”")},
+{date:"2026-09-05",dl:"05–13.09.2026",t:L("İzmir Enternasyonal Fuarı","İzmir International Fair"),d:L("Team Lyron ile robot tanıtımı, STEM farkındalığı","Robot demos and STEM awareness with Team Lyron")},
+{date:"2026-09-10",dl:"10–11.09 (yıl doğrulanacak)",t:L("Bakırçay Üniversitesi – IdeLab Eğitim Kampı","Bakırçay University – IdeLab Camp"),d:L("Yılı LinkedIn'den doğrula","Verify the year on LinkedIn")}
+],
+mun:[
+{name:"CFLMUN'26",date:"20–22.02.2026",c:L("G20 • Çin","G20 • China")},
+{name:"AALMUN",date:"",c:L("SOCHUM • Yunanistan","SOCHUM • Greece")},
+{name:"CFLMUN Train",date:"",c:L("ECOFIN • Fransa","ECOFIN • France")}
+],
+vol:[
+{n:"LÖSEV",d:L("Gönüllülük; Team Lyron ile ziyaret","Volunteering; visit with Team Lyron")},
+{n:L("Türk Kızılay","Turkish Red Crescent"),d:L("Gönüllülük","Volunteering")},
+{n:"Best Buddies",d:L("Proje katılımı","Project participation")},
+{n:"Bin Çocuk Bin Ağaç",d:L("Fidan dikimi faaliyeti","Sapling planting activity")}
+]};
+const CATS={all:L("Hepsi","All"),robot:L("Robotik","Robotics"),env:L("Çevre","Environment"),stem:L("STEM & Eğitim","STEM & Education"),city:L("Akıllı şehir","Smart city"),social:L("Sosyal sorumluluk","Social"),intl:L("Uluslararası","International")};
+const T={
+nav:{about:L("Hakkımda","About"),teams:L("Takımlar","Teams"),projects:L("Projeler","Projects"),achievements:L("Başarılar","Awards"),events:L("Etkinlikler","Events"),mun:L("MUN","MUN"),volunteering:L("Gönüllülük","Volunteering"),gallery:L("Galeri","Gallery"),contact:L("İletişim","Contact")},
+tag:L("Öğrenci • Robotik ve STEM • Proje Geliştirme • Liderlik ve İnovasyon","Student • Robotics & STEM • Project Development • Leadership & Innovation"),
+intro:L("İzmir'de Çiğli Fen Lisesi öğrencisiyim. Robotik, çevre projeleri, girişimcilik ve MUN gibi farklı alanlarda takımlarla çalışıyor, öğrendiklerimi paylaşmaya çalışıyorum.","I am a student at Çiğli Science High School in İzmir. I work in teams across robotics, environmental projects, entrepreneurship and MUN, and I like sharing what I learn."),
+about:L("Hakkımda","About me"),aboutNote:L("Bu alanı kendi cümlelerinle yaz: ilgi alanların, hedeflerin, neden bu işleri yaptığın. (Kod içindeki “aboutText” değerini düzenle.)","Write this in your own words: interests, goals, why you do this. (Edit “aboutText” in the code.)"),
+teams:L("Takımlar","Teams"),teamsSub:L("Kurduğum ve görev aldığım takımlar.","Teams I founded or took part in."),
+projects:L("Projeler","Projects"),projectsSub:L("Kategoriye göre filtrele. Durum alanı projenin gerçek aşamasını gösterir.","Filter by category. The status shows the real stage of each project."),
+ach:L("Başarılar","Achievements"),achSub:L("Katılım ile derece ayrı gösterilir.","Participation and rankings are kept separate."),
+events:L("Etkinlikler","Events"),eventsSub:L("Tarih sırasıyla.","In date order."),
+mun:L("MUN ve münazara","MUN & debate"),munSub:L("Konferanslar, komiteler ve temsil edilen ülkeler. Münazarada okul 3.lüğünden 2.liğine geldik.","Conferences, committees and countries represented. In school debate we moved from 3rd to 2nd place."),
+vol:L("Gönüllülük","Volunteering"),volSub:L("Toplumsal katkı çalışmaları. Çocukların fotoğraflarını izin olmadan yayınlama.","Community work. Do not publish photos of children without permission."),
+gal:L("Fotoğraflar","Photos"),galSub:L("Fotoğraflarını galeri listesine ekle; boşsa yer tutucu görünür.","Add your photos to the gallery list; placeholders show until then."),
+contact:L("İletişim","Contact"),contactSub:L("Benimle LinkedIn üzerinden ulaşabilirsin.","Reach me on LinkedIn."),
+foot:L("© Emir Harun Kılıç. Bilgiler LinkedIn ve CV'ye göre güncellenir; eksik alanlar bilerek boş bırakıldı.","© Emir Harun Kılıç. Content follows LinkedIn and CV; missing fields are left blank on purpose."),
+photo:L("Profil fotoğrafı ekle","Add profile photo"),noPhoto:L("Fotoğraf ekle","Add photo"),role:L("Rol","Role"),status:L("Durum","Status"),none:L("Bu kategoride proje yok.","No projects in this category."),
+cv:L("CV'mi Görüntüle","View CV")};
+const aboutText=L("Buraya kendi tanıtım metnini yaz.","Write your own bio here.");
+const GALLERY=[ /* {img:"images/x.jpg", t:L("Başlık","Title"), d:"2026"} */ ];
+let lang=localStorage.getItem?(function(){try{return localStorage.getItem("lang")||"tr"}catch(e){return"tr"}})():"tr";
+let cat="all";
+const $=s=>document.querySelector(s);
+const t=o=>o[lang]??"";
+const ph=(img,txt,cls="")=>img?`<div class="ph ${cls}"><img src="${img}" alt="${txt}" loading="lazy"></div>`:`<div class="ph ${cls}">${txt}</div>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(){
+ document.documentElement.lang=lang;$("#lang").textContent=lang==="tr"?"EN":"TR";
+ $("#nav").innerHTML=Object.keys(T.nav).map(k=>`<a href="#${k}">${t(T.nav[k])}</a>`).join("");
+ document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(T[e.dataset.t]));
+ $("#h-tag").textContent=t(T.tag);$("#h-intro").textContent=t(T.intro);$("#about-p").textContent=t(aboutText);
+ $("#h-photo").innerHTML=T.photo[lang];
+ $("#h-btns").innerHTML=`<a class="btn p" href="#projects">${t(T.nav.projects)}</a><a class="btn" href="#events">${t(T.nav.events)}</a>`+(CV_URL?`<a class="btn" href="${CV_URL}" target="_blank" rel="noopener">${t(T.cv)}</a>`:"")+`<a class="btn" href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a>`;
+ $("#li").href=LINKEDIN;
+ $("#teams-g").innerHTML=DATA.teams.map(x=>`<article class="card">${ph(x.img,t(T.noPhoto))}<h3>${esc(x.name)}</h3><span class="meta">${t(x.role)} · ${x.period}</span><p>${t(x.desc)}</p></article>`).join("");
+ $("#pf").innerHTML=Object.keys(CATS).map(k=>`<button data-c="${k}" aria-pressed="${k===cat}">${t(CATS[k])}</button>`).join("");
+ const ps=DATA.projects.filter(p=>cat==="all"||p.cat===cat);
+ $("#pg").innerHTML=ps.length?ps.map(p=>`<article class="card">${ph(p.img,t(T.noPhoto))}<span class="chip">${t(CATS[p.cat])}</span><h3>${esc(p.name)}</h3><span class="meta">${t(T.role)}: ${t(p.role)}${p.period?" · "+p.period:""}</span><p>${t(p.desc)}</p><span class="meta"><b>${t(T.status)}:</b> ${t(p.status)}${t(p.result)?" · "+t(p.result):""}</span></article>`).join(""):`<div class="empty">${t(T.none)}</div>`;
+ $("#ag").innerHTML=DATA.achievements.map(a=>`<article class="card"><h3>${t(a.t)}</h3><p>${t(a.d)}</p></article>`).join("");
+ $("#eg").innerHTML=DATA.events.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(e=>`<li><b>${t(e.t)}</b><span class="meta">${e.dl}</span><p class="sub" style="margin:2px 0 0">${t(e.d)}</p></li>`).join("");
+ $("#mg").innerHTML=DATA.mun.map(m=>`<article class="card">${ph("",t(T.noPhoto))}<h3>${m.name}</h3><span class="meta">${m.date||"—"}</span><p>${t(m.c)}</p></article>`).join("");
+ $("#vg").innerHTML=DATA.vol.map(v=>`<article class="card"><h3>${typeof v.n==="string"?v.n:t(v.n)}</h3><p>${t(v.d)}</p></article>`).join("");
+ $("#gg").innerHTML=GALLERY.length?GALLERY.map(g=>`<figure class="card" style="margin:0">${ph(g.img,t(g.t))}<span class="meta">${t(g.t)} · ${g.d||""}</span></figure>`).join(""):Array.from({length:3},()=>ph("",t(T.noPhoto))).join("");
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){cat=b.dataset.c;render()}});
+$("#lang").onclick=()=>{lang=lang==="tr"?"en":"tr";try{localStorage.setItem("lang",lang)}catch(e){}render()};
+$("#theme").onclick=()=>{const r=document.documentElement,d=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=d?"light":"dark"};
+render();
+</script>
+</body>
+</html>
