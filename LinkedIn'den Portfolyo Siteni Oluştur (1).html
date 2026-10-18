@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LinkedIn'den Portfolyo Siteni Oluştur</title>
+<style>
+:root{--bg:#0a1a3f;--bg2:#10244f;--card:#142a5c;--ink:#fff;--mute:#b3c0e0;--line:#27407f;--acc:#4d8dff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#0a1a3f}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg2);z-index:30}
+a{color:var(--acc)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg2);border-bottom:1px solid var(--line)}
+.bar{max-width:1040px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.brand{font-weight:700;white-space:nowrap}
+nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav button{border:0;background:none;color:var(--mute);padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:14px;white-space:nowrap}
+nav button:hover{color:#fff}
+nav button[aria-current="page"]{background:var(--acc);color:#04122e;font-weight:600}
+main{max-width:1040px;margin:auto;padding:32px 16px 48px}
+h1{font-size:clamp(32px,7vw,54px);line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-size:28px;margin:0 0 6px}
+h3{margin:0;font-size:18px}
+.sub{color:var(--mute);max-width:64ch;margin:0 0 20px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],textarea{width:100%;background:var(--bg);color:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+textarea{min-height:200px;resize:vertical}
+.btn{display:inline-block;border:1px solid var(--acc);background:transparent;color:var(--acc);border-radius:10px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+.btn.p{background:var(--acc);color:#04122e}
+.btn:disabled{opacity:.5;cursor:wait}
+.note{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;color:var(--mute);font-size:14px;margin:10px 0}
+.err{color:#ffb4b4;margin-top:10px}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.thumbs img{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:1fr 260px;gap:32px;align-items:center;padding:16px 0 8px}
+.hero .pic{aspect-ratio:1;border-radius:18px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:13px;text-align:center;overflow:hidden}
+.hero .pic img{width:100%;height:100%;object-fit:cover}
+.tag{color:var(--acc);font-weight:600;margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.card p{margin:0;color:var(--mute);font-size:15px}
+.meta{font-size:13px;color:var(--mute)}
+.chip{display:inline-block;font-size:12px;padding:2px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--line);color:var(--acc);font-weight:600;margin-right:4px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 18px;min-width:120px}
+.stat b{display:block;font-size:26px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:18px}
+.gal figure{margin:0;cursor:zoom-in}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
+.gal figcaption{font-size:13px;color:var(--mute);margin-top:4px}
+.lb{position:fixed;inset:0;background:rgba(3,10,30,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:50;padding:16px;gap:10px}
+.lb img{max-width:100%;max-height:78vh;border-radius:10px}
+.lb[hidden]{display:none}
+.sec{margin-top:36px}
+footer{max-width:1040px;margin:0 auto;padding:16px;color:var(--mute);font-size:13px;border-top:1px solid var(--line)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.hero .pic{max-width:240px}}
+</style>
+</head>
+<body>
+<header><div class="bar"><span class="brand" id="brand">Portfolyo Oluşturucu</span><nav id="nav" aria-label="Menü"></nav></div></header>
+<main id="app"></main>
+<footer>Site, yalnızca senin verdiğin metin ve fotoğraflardan yapay zekâ ile üretilir. Yayınlamadan önce her bilgiyi kontrol et.</footer>
+<div class="lb" id="lb" hidden><img id="lbi" alt=""><div id="lbc"></div><button class="btn" id="lbx">Kapat</button></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let photos=[];   // {blob,url}
+let site=null, tab="home", busy=false, err="";
+
+/* ---------- Setup ---------- */
+function renderSetup(){
+ $("#nav").innerHTML="";$("#brand").textContent="Portfolyo Oluşturucu";
+ $("#app").innerHTML=`
+ <h1>LinkedIn'inden kişisel site</h1>
+ <p class="sub">Profilindeki yoğunluğa bakıp senin için sekmeleri kendisi seçen bir site oluşturur: çok projen varsa “Projeler”, çok yarışman varsa “Yarışmalar” gibi.</p>
+ <div class="panel">
+  <label for="u">LinkedIn profil bağlantısı</label>
+  <input type="text" id="u" placeholder="https://www.linkedin.com/in/...">
+  <div class="note">LinkedIn giriş istediği için bu sayfa profilini kendi başına okuyamaz ve fotoğraflarını çekemez. Bunun yerine: profilini aç, <b>Hakkında, Deneyim, Projeler, Gönüllülük, Sertifikalar</b> bölümlerini kopyalayıp aşağıya yapıştır. Fotoğrafları (LinkedIn gönderilerinden kaydet) aşağıdan yükle; yapay zekâ her birine bakıp uygun sekmeye yerleştirir.</div>
+  <label for="t">Profil metni</label>
+  <textarea id="t" placeholder="Profilindeki metinleri buraya yapıştır..."></textarea>
+  <label for="f">Fotoğraflar (en fazla 12; ilk fotoğraf profil resmi adayıdır)</label>
+  <input type="file" id="f" accept="image/*" multiple>
+  <div class="thumbs" id="th"></div>
+  <div style="margin-top:18px"><button class="btn p" id="go">Siteyi oluştur</button></div>
+  <div class="err" id="er" role="alert"></div>
+ </div>`;
+ $("#f").onchange=addPhotos;$("#go").onclick=generate;drawThumbs();
+}
+async function shrink(file){
+ const bmp=await createImageBitmap(file);const k=Math.min(1,900/Math.max(bmp.width,bmp.height));
+ const c=document.createElement("canvas");c.width=Math.round(bmp.width*k);c.height=Math.round(bmp.height*k);
+ c.getContext("2d").drawImage(bmp,0,0,c.width,c.height);
+ const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",.75));
+ return {blob,url:c.toDataURL("image/jpeg",.75)};
+}
+async function addPhotos(e){
+ for(const f of [...e.target.files]){if(photos.length>=12)break;try{photos.push(await shrink(f))}catch(x){}}
+ drawThumbs();
+}
+function drawThumbs(){const t=$("#th");if(t)t.innerHTML=photos.map((p,i)=>`<img src="${p.url}" alt="Fotoğraf ${i+1}">`).join("")}
+
+/* ---------- Generate ---------- */
+const PROMPT=`Sen bir öğrencinin/gencin kişisel portfolyo sitesini kurgulayan editörsün. Aşağıdaki LinkedIn profil metnini ve ekteki fotoğrafları analiz et.
+KESİN KURALLAR: Metinde olmayan hiçbir başarı, rol, tarih, sayı veya ödül uydurma. Takım başarısını kişisel başarı gibi yazma (her öğe için "kapsam" alanına "kişisel" veya "takım" yaz). Katılım ile derece/finalistliği karıştırma. Bitmemiş veya fikir aşamasındaki işi çalışan ürün gibi sunma. Telefon, e-posta, okul numarası gibi kişisel verileri alma. Tarih belirsizse boş bırak.
+GÖREV: Profildeki yoğunluğu tespit et ve sekmeleri buna göre seç. Sadece profilde yeterli içerik olan konular için sekme aç (en fazla 6, yoğunluğa göre sırala). Sekme başlıklarını içeriğe göre seç (örn. Projeler, Yarışmalar, Takımlar, Etkinlikler, Gönüllülük, MUN, Eğitim, Sertifikalar). Her sekmede metinden çıkardığın öğeleri listele.
+FOTOĞRAFLAR: Her fotoğrafa bak. Yalnızca gördüğünü anlat; kimse hakkında kesin kimlik/yaş iddiası kurma. Hangi sekmeye ait olduğunu içerik ve profil metniyle eşleştir; emin değilsen "galeri" yaz. Bir yüz portresi/vesikalık gibi görünen fotoğraf "profil" olabilir.
+SADECE şu JSON'u döndür (Türkçe):
+{"name":"","headline":"","intro":"2-3 cümle, yalnızca metne dayalı","highlights":["en fazla 4 kısa madde"],
+"sections":[{"id":"kısa-slug","title":"","summary":"1-2 cümle: bu alandaki yoğunluk","items":[{"title":"","org":"","date":"","role":"","scope":"kişisel|takım","summary":"1-2 cümle","tags":[]}]}],
+"photos":[{"index":0,"section":"sekme id'si | profil | galeri","caption":"kısa, gördüğüne dayalı","item":"eşleşen öğe başlığı veya boş"}]}`;
+async function generate(){
+ const txt=$("#t").value.trim(),url=$("#u").value.trim();
+ const er=$("#er");er.textContent="";
+ if(txt.length<80){er.textContent="Profil metni çok kısa. Hakkında, Deneyim ve Projeler bölümlerini yapıştır.";return}
+ $("#go").disabled=true;$("#go").textContent="Profil analiz ediliyor...";
+ try{
+  const sample=await claude.use("sample");
+  if(!sample)throw {code:"none",message:"Yapay zekâ bu görünümde kullanılamıyor. Sayfayı claude.ai üzerinden aç."};
+  const opts={modelTier:"complex"};
+  if(photos.length){const lim=await sample.limits();if(lim&&lim.images)opts.images=photos.map(p=>p.blob)}
+  const data=await sample.json(PROMPT+"\n\nFotoğraf sayısı: "+(opts.images?photos.length:0)+"\n\nPROFİL METNİ:\n"+txt,opts);
+  site={...data,linkedin:url};tab="home";renderSite();
+ }catch(x){
+  er.textContent=x.code==="not_granted"?"Yapay zekâ izni verilmedi. Tekrar deneyip izin ver.":x.code==="rate_limited"?"Çok sık denedin, biraz bekleyip tekrar dene.":"Site oluşturulamadı: "+(x.message||"bilinmeyen hata")+". Tekrar dene.";
+  $("#go").disabled=false;$("#go").textContent="Siteyi oluştur";
+ }
+}
+
+/* ---------- Site ---------- */
+const secs=()=>(site.sections||[]).filter(s=>s&&s.items&&s.items.length);
+const phOf=id=>(site.photos||[]).filter(p=>p.section===id&&photos[p.index]);
+const prof=()=>{const p=(site.photos||[]).find(p=>p.section==="profil"&&photos[p.index]);return p?photos[p.index].url:""};
+function gal(list){return list.length?`<div class="gal">${list.map(p=>`<figure data-i="${p.index}"><img src="${photos[p.index].url}" alt="${esc(p.caption)}" loading="lazy"><figcaption>${esc(p.caption)}</figcaption></figure>`).join("")}</div>`:""}
+function itemCard(it){return `<article class="card"><h3>${esc(it.title)}</h3><span class="meta">${[it.org,it.date].filter(Boolean).map(esc).join(" · ")}</span>${it.role?`<span class="meta">Rol: ${esc(it.role)}</span>`:""}<p>${esc(it.summary)}</p><div>${it.scope?`<span class="chip">${esc(it.scope)}</span>`:""}${(it.tags||[]).slice(0,4).map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></article>`}
+function renderSite(){
+ const S=secs();$("#brand").textContent=site.name||"Portfolyo";
+ const hasG=(site.photos||[]).some(p=>p.section==="galeri"&&photos[p.index]);
+ const tabs=[["home","Ana sayfa"],...S.map(s=>[s.id,s.title]),...(hasG?[["galeri","Galeri"]]:[]),["iletisim","İletişim"]];
+ $("#nav").innerHTML=tabs.map(([k,n])=>`<button data-k="${esc(k)}" ${k===tab?'aria-current="page"':""}>${esc(n)}</button>`).join("");
+ let h="";
+ if(tab==="home"){
+  const pic=prof();
+  h=`<section class="hero"><div><p class="tag">${esc(site.headline)}</p><h1>${esc(site.name)}</h1><p class="sub">${esc(site.intro)}</p></div><div class="pic">${pic?`<img src="${pic}" alt="${esc(site.name)}">`:"Profil fotoğrafı bulunamadı"}</div></section>
+  <div class="stats">${S.map(s=>`<div class="stat"><b>${s.items.length}</b>${esc(s.title)}</div>`).join("")}</div>
+  ${(site.highlights||[]).length?`<div class="panel"><h3>Öne çıkanlar</h3><ul>${site.highlights.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+  ${S.map(s=>`<div class="sec"><h2>${esc(s.title)}</h2><p class="sub">${esc(s.summary)}</p><div class="grid">${s.items.slice(0,3).map(itemCard).join("")}</div>${s.items.length>3?`<p><button class="btn" data-k="${esc(s.id)}">Tümünü gör (${s.items.length})</button></p>`:""}</div>`).join("")}`;
+ }else if(tab==="galeri"){
+  h=`<h2>Galeri</h2>${gal((site.photos||[]).filter(p=>p.section==="galeri"&&photos[p.index]))}`;
+ }else if(tab==="iletisim"){
+  h=`<h2>İletişim</h2><p class="sub">${esc(site.name)} ile LinkedIn üzerinden ulaşabilirsin.</p>${site.linkedin?`<a class="btn p" href="${esc(site.linkedin)}" target="_blank" rel="noopener">LinkedIn profili</a>`:'<div class="note">LinkedIn bağlantısı girilmedi.</div>'}`;
+ }else{
+  const s=S.find(x=>x.id===tab);
+  h=s?`<h2>${esc(s.title)}</h2><p class="sub">${esc(s.summary)}</p><div class="grid">${s.items.map(itemCard).join("")}</div>${gal(phOf(s.id))}`:`<div class="note">Bu sekme bulunamadı.</div>`;
+ }
+ h+=`<p style="margin-top:36px"><button class="btn" id="again">Yeni profil ile baştan başla</button></p>`;
+ $("#app").innerHTML=h;window.scrollTo(0,0);
+}
+document.addEventListener("click",e=>{
+ const k=e.target.closest("[data-k]");if(k&&site){tab=k.dataset.k;renderSite();return}
+ if(e.target.id==="again"){site=null;photos=[];renderSetup();return}
+ const f=e.target.closest("figure[data-i]");
+ if(f){const p=photos[+f.dataset.i];$("#lbi").src=p.url;$("#lbc").textContent=f.querySelector("figcaption").textContent;$("#lb").hidden=false}
+ if(e.target.id==="lbx"||e.target.id==="lb")$("#lb").hidden=true;
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#lb").hidden=true});
+renderSetup();
+</script>
+</body>
+</html>
